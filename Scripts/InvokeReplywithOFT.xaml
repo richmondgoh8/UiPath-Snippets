@@ -1,0 +1,101 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="InvokeReplywithOFT" this:InvokeReplywithOFT.in_MsgFilePath="[Path.Combine(Environment.CurrentDirectory, &quot;Sample Files&quot;, &quot;test.msg&quot;)]" this:InvokeReplywithOFT.in_Attachments="[{Path.Combine(Environment.CurrentDirectory, &quot;Sample Files&quot;, &quot;Test.xlsx&quot;)}]" this:InvokeReplywithOFT.in_ReplyBody="Additional Comments" this:InvokeReplywithOFT.in_ToList="[{}]" this:InvokeReplywithOFT.in_CcList="[{}]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_MsgFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="in_Attachments" Type="InArgument(s:String[])" />
+    <x:Property Name="in_ReplyBody" Type="InArgument(x:String)" />
+    <x:Property Name="in_ToList" Type="InArgument(s:String[])" />
+    <x:Property Name="in_CcList" Type="InArgument(s:String[])" />
+    <x:Property Name="in_Subject" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>354,224</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>InvokeReplywithOFT_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Orchestrator.Client</x:String>
+      <x:String>UiPath.Orchestrator.Client.Models</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.CSV.Activities</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.CSV</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Mail.Exchange.Activities</x:String>
+      <x:String>UiPath.Mail.IMAP.Activities</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.POP3.Activities</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>UiPath.Credentials.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OrchestratorClient</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Credentials.Activities</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim oApp As Microsoft.Office.Interop.Outlook.Application = New Microsoft.Office.Interop.Outlook.Application&#xD;&#xA;&#xD;&#xA;Dim oMsg As Microsoft.Office.Interop.Outlook._MailItem&#xD;&#xA;Dim oNS As Microsoft.Office.Interop.Outlook.NameSpace = oApp.GetNamespace(&quot;Mapi&quot;)&#xD;&#xA;Dim oSharedItem As Microsoft.Office.Interop.Outlook.MailItem&#xD;&#xA;Dim oAction As Microsoft.Office.Interop.Outlook.Action&#xD;&#xA;&#xD;&#xA;Dim receipent As Microsoft.Office.Interop.Outlook.Recipient&#xD;&#xA;&#xD;&#xA;Dim vSender As String&#xD;&#xA;&#xD;&#xA;Dim PR_STMP_Address As String = &quot;http://schemas.microsoft.com/mapi/proptag/0x39FE001E&quot;&#xD;&#xA;Dim pa As Microsoft.Office.Interop.Outlook.PropertyAccessor&#xD;&#xA; &#xD;&#xA;oSharedItem = DirectCast(oNS.OpenSharedItem(vMSGPath), Microsoft.Office.Interop.Outlook.MailItem)&#xD;&#xA;&#xD;&#xA;oMsg = oSharedItem.ReplyAll&#xD;&#xA;&#xD;&#xA;For Each toRecipient As String In vTOList&#xD;&#xA; receipent = oMsg.Recipients.add(toRecipient)&#xD;&#xA; receipent.Type = Microsoft.Office.Interop.Outlook.OlMailRecipientType.olTo&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;For Each cc As String In vCCList&#xD;&#xA; receipent = oMsg.Recipients.add(cc)&#xD;&#xA; receipent.Type = Microsoft.Office.Interop.Outlook.OlMailRecipientType.olCC&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;oMsg.HTMLBody = vHTMLStr + oMsg.HTMLBody&#xD;&#xA;&#xD;&#xA;For Each Attachment As String In vAttachmentList&#xD;&#xA; oMsg.Attachments.Add(Attachment)&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;If Not String.IsNullOrEmpty(vSubject) Then&#xD;&#xA; oMsg.Subject = vSubject&#xD;&#xA;End If&#xD;&#xA;&#xD;&#xA;oMsg.Send&#xD;&#xA;&#xD;&#xA;System.GC.Collect&#xD;&#xA;System.GC.WaitForPendingFinalizers" DisplayName="Invoke Reply with OFT" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+    <ui:InvokeCode.Arguments>
+      <InArgument x:TypeArguments="x:String" x:Key="vHTMLStr">[in_ReplyBody]</InArgument>
+      <InArgument x:TypeArguments="scg:List(x:String)" x:Key="vAttachmentList">[in_Attachments.ToList]</InArgument>
+      <InArgument x:TypeArguments="x:String" x:Key="vMSGPath">[in_MsgFilePath]</InArgument>
+      <InArgument x:TypeArguments="scg:List(x:String)" x:Key="vCCList">[in_CcList.ToList]</InArgument>
+      <InArgument x:TypeArguments="scg:List(x:String)" x:Key="vTOList">[in_ToList.ToList]</InArgument>
+      <InArgument x:TypeArguments="x:String" x:Key="vSubject">[in_Subject]</InArgument>
+    </ui:InvokeCode.Arguments>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+  </ui:InvokeCode>
+</Activity>

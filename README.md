@@ -46,3 +46,14 @@ Important Variables
 
 *Can be improved to take in series of email and path names, can be changed to multi-level folder structure*
 
+## InvokeReplywithOFT
+
+> Replys
+
+Important Variables
+1. in_MsgFilePath (Path to MSG File to serve as the source to reply)
+2. in_Attachments (Attachment to put in body)
+3. in_ReplyBody (Additional Text to reply)
+4. in_ToList (Additional Recipents)
+5. in_CcList (Additional Recipents in the loop)
+6. in_Subject (Empty, Text if want to overwrite current subject)
