@@ -1,0 +1,85 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="out_argument" this:out_argument.in_Path="[Path.Combine(Environment.CurrentDirectory, &quot;Sample Files&quot;, &quot;Hello.msg&quot;)]" this:out_argument.in_Root_Folder="Test Inbox" this:out_argument.in_Child_Folder="Processing" this:out_argument.in_Robot_Email="richmond.goh@ncs.com.sg" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:moio="clr-namespace:Microsoft.Office.Interop.Outlook;assembly=UiPath.Mail" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_Path" Type="InArgument(x:String)" />
+    <x:Property Name="in_Root_Folder" Type="InArgument(x:String)" />
+    <x:Property Name="in_Child_Folder" Type="InArgument(x:String)" />
+    <x:Property Name="in_Robot_Email" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>396,356</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>out_argument_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>Microsoft.Office.Interop.Outlook</x:String>
+      <x:String>Microsoft.Office.Interop.Excel</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Seq" sap:VirtualizedContainerService.HintSize="376,256" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Int32" Default="456" Name="B" />
+      <Variable x:TypeArguments="x:Int32" Name="sum" />
+      <Variable x:TypeArguments="x:Int32" Default="123" Name="A" />
+      <Variable x:TypeArguments="moio:Application" Name="Test" />
+      <Variable x:TypeArguments="moio:MailItem" Name="variable1" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim oApp As New Microsoft.Office.Interop.Outlook.Application&#xD;&#xA;Dim oNS As Microsoft.Office.Interop.Outlook.NameSpace = oApp.GetNamespace(&quot;Mapi&quot;)&#xD;&#xA;'Dim oInbox As Microsoft.Office.Interop.Outlook.MAPIFolder = oNS.GetDefaultFolder(Microsoft.Office.Interop.Outlook.OlDefaultFolders.olFolderInbox)&#xD;&#xA;Dim oInbox As Microsoft.Office.Interop.Outlook.MAPIFolder = oNS.Folders(in_Robot_Email).Folders(in_Root_Folder).Folders(in_Child_Folder)&#xD;&#xA;Dim newMail As Microsoft.Office.Interop.Outlook.MailItem&#xD;&#xA;Dim oItems As Microsoft.Office.Interop.Outlook.Items = oInbox.Items&#xD;&#xA;&#xD;&#xA;'Dim oMsg As Microsoft.Office.Interop.Outlook.MailItem = DirectCast(oItems.GetFirst, Microsoft.Office.Interop.Outlook.MailItem)&#xD;&#xA;'oMsg.SaveAs(&quot;C:\Users\SinLucidious\Downloads\&quot;&amp; oMsg.Subject &amp;&quot;.msg&quot;, Microsoft.Office.Interop.Outlook.OlSaveAsType.olMSG)&#xD;&#xA;Try&#xD;&#xA;&#x9;If oItems.Count &gt; 0 Then&#xD;&#xA;&#x9;&#x9;newMail = DirectCast(oItems(1), Microsoft.Office.Interop.Outlook.MailItem)&#xD;&#xA;&#x9;&#x9;newMail.SaveAs(in_Path, Microsoft.Office.Interop.Outlook.OlSaveAsType.olMSG)&#xD;&#xA;&#x9;End If&#xD;&#xA;Catch e As System.Exception&#xD;&#xA;&#x9;Console.WriteLine(e.Message)&#xD;&#xA;Finally&#xD;&#xA;&#x9;&#xD;&#xA;End Try&#xD;&#xA;&#xD;&#xA;'For Each newMail In oItems&#xD;&#xA;&#xD;&#xA;&#x9;'Console.WriteLine(newMail.Subject)&#xD;&#xA;&#x9;'newMail.SaveAs(in_Path &amp; System.Text.RegularExpressions.Regex.Replace(newMail.Subject, &quot;[\\:/*?\[&lt;\]&gt;|&quot;&quot;*]&quot;, &quot;_&quot;) &amp;&quot;.msg&quot;, Microsoft.Office.Interop.Outlook.OlSaveAsType.olMSG)&#xD;&#xA;&#x9;'newMail.SaveAs(in_Path, Microsoft.Office.Interop.Outlook.OlSaveAsType.olMSG)&#xD;&#xA;&#x9;'Console.WriteLine(oMsg.ReceivedTime)&#xD;&#xA;'Next&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+      <ui:InvokeCode.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Path">[in_Path]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Robot_Email">[in_Robot_Email]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Root_Folder">[in_Root_Folder]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Child_Folder">[in_Child_Folder]</InArgument>
+      </ui:InvokeCode.Arguments>
+    </ui:InvokeCode>
+  </Sequence>
+</Activity>

@@ -1,0 +1,158 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Check" this:Check.in_MSGPath="[Path.Combine(Environment.CurrentDirectory, &quot;Sample Files&quot;, &quot;test.msg&quot;)]" this:Check.isCustomHeader="True" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_MSGPath" Type="InArgument(x:String)" />
+    <x:Property Name="isCustomHeader" Type="InArgument(x:Boolean)" />
+    <x:Property Name="masterDT" Type="OutArgument(sd:DataTable)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>396,790</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Data.Entity</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Check" sap:VirtualizedContainerService.HintSize="376,690" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="outputTxt" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim oApp As New Microsoft.Office.Interop.Outlook.Application&#xD;&#xA;oApp = New Microsoft.Office.Interop.Outlook.Application&#xD;&#xA;&#xD;&#xA;Dim oNS As Microsoft.Office.Interop.Outlook.NameSpace = oApp.GetNamespace(&quot;Mapi&quot;)&#xD;&#xA;Dim oMsg As Microsoft.Office.Interop.Outlook._MailItem&#xD;&#xA;&#xD;&#xA;oDataTable = New DataTable&#xD;&#xA;&#xD;&#xA;Dim TableExpression As String = &quot;&lt;table[^&gt;]*&gt;(.*?)&lt;/table&gt;&quot;&#xD;&#xA;Dim HeaderExpression As String = &quot;&lt;th[^&gt;]*&gt;(.*?)&lt;/th&gt;&quot;&#xD;&#xA;Dim RowExpression As String = &quot;&lt;tr[^&gt;]*&gt;(.*?)&lt;/tr&gt;&quot;&#xD;&#xA;Dim ColumnExpression As String = &quot;&lt;td[^&gt;]*&gt;(.*?)&lt;/td&gt;&quot;&#xD;&#xA;&#xD;&#xA;' Headerless&#xD;&#xA;Dim isHeaderCreated As Boolean&#xD;&#xA;&#xD;&#xA;Dim HTMLStr As String&#xD;&#xA;&#xD;&#xA;Dim iCol As Integer&#xD;&#xA;Dim iColRow As Integer&#xD;&#xA;Dim IHeaderRow As Boolean&#xD;&#xA;&#xD;&#xA;Dim TblCollection As System.Text.RegularExpressions.MatchCollection&#xD;&#xA;Dim HeaderCollection As System.Text.RegularExpressions.MatchCollection&#xD;&#xA;Dim rowCollection As System.Text.RegularExpressions.MatchCollection&#xD;&#xA;Dim rowColValueCollection As System.Text.RegularExpressions.MatchCollection&#xD;&#xA;Dim oCol As Integer&#xD;&#xA;Dim dr As DataRow&#xD;&#xA;&#xD;&#xA;isHeaderCreated = False&#xD;&#xA;iCol = 0&#xD;&#xA;&#xD;&#xA;oMsg = DirectCast(oNS.OpenSharedItem(vMSGPath), Microsoft.Office.Interop.Outlook.MailItem)&#xD;&#xA;&#xD;&#xA;HTMLStr = oMsg.HTMLBody&#xD;&#xA;TblCollection = System.Text.RegularExpressions.Regex.Matches(HTMLStr,TableExpression)&#xD;&#xA;' Ensure only 1 table in Email&#xD;&#xA;If TblCollection.Count = 1 Then&#xD;&#xA;&#x9;If System.Text.RegularExpressions.Regex.Matches(TblCollection(0).ToString, HeaderExpression).Count &gt; 0 And Not isHeaderCreated Then&#xD;&#xA;&#x9;&#x9;' Proceed to add headers&#xD;&#xA;&#x9;&#x9;Console.WriteLine(&quot;Real Headers Found&quot;)&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;HeaderCollection = System.Text.RegularExpressions.Regex.Matches(TblCollection(0).ToString, RowExpression)&#xD;&#xA;&#x9;&#x9;rowCollection = System.Text.RegularExpressions.Regex.Matches(HeaderCollection(0).ToString, HeaderExpression)&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;For Each oHeader As System.Text.RegularExpressions.Match In rowCollection&#xD;&#xA;&#x9;&#x9;&#x9;oDataTable.Columns.Add(System.Text.RegularExpressions.Regex.Replace(oHeader.ToString, &quot;&lt;.*?&gt;&quot;, String.Empty))&#xD;&#xA;&#x9;&#x9;Next&#xD;&#xA;&#x9;&#x9;isHeaderCreated = True&#xD;&#xA;&#x9;End If&#x9;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;If Not isHeaderCreated And isCustomHeader Then&#xD;&#xA;&#x9;&#x9;Console.WriteLine(&quot;Adding Custom Headers&quot;)&#xD;&#xA;&#x9;&#x9;HeaderCollection = System.Text.RegularExpressions.Regex.Matches(TblCollection(0).ToString, RowExpression)&#xD;&#xA;&#x9;&#x9;rowCollection = System.Text.RegularExpressions.Regex.Matches(HeaderCollection(0).ToString, ColumnExpression)&#xD;&#xA;&#x9;&#x9;For Each oHeader As System.Text.RegularExpressions.Match In rowCollection&#xD;&#xA;&#x9;&#x9;&#x9;oDataTable.Columns.Add(System.Text.RegularExpressions.Regex.Replace(oHeader.ToString, &quot;&lt;.*?&gt;&quot;, String.Empty))&#xD;&#xA;&#x9;&#x9;Next&#xD;&#xA;&#x9;&#x9;isHeaderCreated = True&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;Else If Not isHeaderCreated And Not isCustomHeader Then&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;Console.WriteLine(&quot;Adding Fake Headers&quot;)&#xD;&#xA;&#x9;&#x9;HeaderCollection = System.Text.RegularExpressions.Regex.Matches(TblCollection(0).ToString, RowExpression)&#xD;&#xA;&#x9;&#x9;rowCollection = System.Text.RegularExpressions.Regex.Matches(HeaderCollection(0).ToString, ColumnExpression)&#xD;&#xA;&#x9;&#x9;oCol = 1&#xD;&#xA;&#x9;&#x9;For Each oHeader As System.Text.RegularExpressions.Match In rowCollection&#xD;&#xA;&#x9;&#x9;&#x9;oDataTable.Columns.Add(&quot;Column &quot;&amp; oCol)&#xD;&#xA;&#x9;&#x9;&#x9;oCol+=1&#xD;&#xA;&#x9;&#x9;Next&#xD;&#xA;&#x9;&#x9;isHeaderCreated = True&#xD;&#xA;&#x9;End If&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;IHeaderRow = True&#xD;&#xA;&#x9;If System.Text.RegularExpressions.Regex.Matches(HTMLStr, HeaderExpression).Count &gt; 0 OrElse Not isCustomHeader Then&#xD;&#xA;&#x9;&#x9;Console.WriteLine(&quot;Add all as rows&quot;)&#xD;&#xA;&#x9;&#x9;IHeaderRow = False&#xD;&#xA;&#x9;&#x9;iCol = 1&#xD;&#xA;&#x9;End If&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;For Each row As System.Text.RegularExpressions.Match In HeaderCollection&#xD;&#xA;&#x9;&#x9;If Not iCol = 0 And Not IHeaderRow Then&#xD;&#xA;&#x9;&#x9;&#x9;Console.WriteLine(&quot;Checkpt 1&quot;)&#xD;&#xA;&#x9;&#x9;&#x9;console.WriteLine(row.ToString)&#xD;&#xA;&#x9;&#x9;&#x9;rowColValueCollection = System.Text.RegularExpressions.Regex.Matches(row.ToString, ColumnExpression)&#xD;&#xA;&#x9;&#x9;&#x9;dr = oDataTable.NewRow()&#xD;&#xA;&#x9;&#x9;&#x9;iColRow = 0&#xD;&#xA;&#x9;&#x9;&#x9;For Each rowColValue As System.Text.RegularExpressions.Match In rowColValueCollection&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Console.WriteLine(&quot;Checkpt 2&quot;)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;dr(iColRow) = System.Text.RegularExpressions.Regex.Replace(rowColValue.ToString, &quot;&lt;.*?&gt;&quot;, String.Empty)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;iColRow += 1&#xD;&#xA;&#x9;&#x9;&#x9;Next&#xD;&#xA;&#x9;&#x9;&#x9;Console.WriteLine(&quot;Checkpt 3&quot;)&#xD;&#xA;&#x9;&#x9;&#x9;oDataTable.Rows.Add(dr)&#xD;&#xA;&#x9;&#x9;End If&#xD;&#xA;&#x9;&#x9;iCol += 1&#xD;&#xA;&#x9;&#x9;IHeaderRow = False&#xD;&#xA;&#x9;Next&#xD;&#xA;End If&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;System.GC.Collect&#xD;&#xA;System.GC.WaitForPendingFinalizers" DisplayName="Invoke Extract HTML Table Version 1" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+      <ui:InvokeCode.Arguments>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="oDataTable">[masterDT]</OutArgument>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="isCustomHeader">[isCustomHeader]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="vMSGPath">[in_MSGPath]</InArgument>
+      </ui:InvokeCode.Arguments>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InvokeCode>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242,143" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim oApp As New Microsoft.Office.Interop.Outlook.Application&#xD;&#xA;oApp = New Microsoft.Office.Interop.Outlook.Application&#xD;&#xA;&#xD;&#xA;Dim oNS As Microsoft.Office.Interop.Outlook.NameSpace = oApp.GetNamespace(&quot;Mapi&quot;)&#xD;&#xA;Dim oInbox As Microsoft.Office.Interop.Outlook.MAPIFolder = oNS.Folders(&quot;richmond.goh@ncs.com.sg&quot;).Folders(&quot;RPA Folder&quot;).Folders(&quot;Processing&quot;)&#xD;&#xA;Dim oItems As Microsoft.Office.Interop.Outlook.Items = oInbox.Items&#xD;&#xA;Dim oMsg As Microsoft.Office.Interop.Outlook._MailItem&#xD;&#xA;&#xD;&#xA;oDataTable = New DataTable&#xD;&#xA;&#xD;&#xA;Dim TableExpression As String = &quot;&lt;table[^&gt;]*&gt;(.*?)&lt;/table&gt;&quot;&#xD;&#xA;Dim HeaderExpression As String = &quot;&lt;th[^&gt;]*&gt;(.*?)&lt;/th&gt;&quot;&#xD;&#xA;Dim RowExpression As String = &quot;&lt;tr[^&gt;]*&gt;(.*?)&lt;/tr&gt;&quot;&#xD;&#xA;Dim ColumnExpression As String = &quot;&lt;td[^&gt;]*&gt;(.*?)&lt;/td&gt;&quot;&#xD;&#xA;&#xD;&#xA;' Headerless&#xD;&#xA;Dim isHeaderCreated As Boolean&#xD;&#xA;&#xD;&#xA;Dim HTMLStr As String&#xD;&#xA;&#xD;&#xA;Dim iCol As Integer&#xD;&#xA;Dim iColRow As Integer&#xD;&#xA;Dim IHeaderRow As Boolean&#xD;&#xA;&#xD;&#xA;Dim TblCollection As System.Text.RegularExpressions.MatchCollection&#xD;&#xA;Dim HeaderCollection As System.Text.RegularExpressions.MatchCollection&#xD;&#xA;Dim rowCollection As System.Text.RegularExpressions.MatchCollection&#xD;&#xA;Dim rowColValueCollection As System.Text.RegularExpressions.MatchCollection&#xD;&#xA;Dim oCol As Integer&#xD;&#xA;Dim dr As DataRow&#xD;&#xA;&#xD;&#xA;oMsg = DirectCast(oApp.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem),Microsoft.Office.Interop.Outlook._MailItem)&#xD;&#xA;isHeaderCreated = False&#xD;&#xA;iCol = 0&#xD;&#xA;&#xD;&#xA;For Each oMsg In oItems&#xD;&#xA;&#x9;HTMLStr = oMsg.HTMLBody&#xD;&#xA;&#x9;TblCollection = System.Text.RegularExpressions.Regex.Matches(HTMLStr,TableExpression)&#xD;&#xA;&#x9;If TblCollection.Count &lt;&gt; 1 Then&#xD;&#xA;&#x9;&#x9;Console.WriteLine(&quot;Skipping Email, Contain more than 1 table&quot;)&#xD;&#xA;&#x9;&#x9;Continue For&#xD;&#xA;&#x9;End If&#xD;&#xA;&#xD;&#xA;&#x9;If System.Text.RegularExpressions.Regex.Matches(TblCollection(0).ToString, HeaderExpression).Count &gt; 0 And Not isHeaderCreated Then&#xD;&#xA;&#x9;&#x9;' Proceed to add headers&#xD;&#xA;&#x9;&#x9;Console.WriteLine(&quot;Real Headers Found&quot;)&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;HeaderCollection = System.Text.RegularExpressions.Regex.Matches(TblCollection(0).ToString, RowExpression)&#xD;&#xA;&#x9;&#x9;rowCollection = System.Text.RegularExpressions.Regex.Matches(HeaderCollection(0).ToString, HeaderExpression)&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;For Each oHeader As System.Text.RegularExpressions.Match In rowCollection&#xD;&#xA;&#x9;&#x9;&#x9;oDataTable.Columns.Add(System.Text.RegularExpressions.Regex.Replace(oHeader.ToString, &quot;&lt;.*?&gt;&quot;, String.Empty))&#xD;&#xA;&#x9;&#x9;Next&#xD;&#xA;&#x9;&#x9;isHeaderCreated = True&#xD;&#xA;&#x9;End If&#x9;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;If Not isHeaderCreated And isCustomHeader Then&#xD;&#xA;&#x9;&#x9;Console.WriteLine(&quot;Adding Custom Headers&quot;)&#xD;&#xA;&#x9;&#x9;HeaderCollection = System.Text.RegularExpressions.Regex.Matches(TblCollection(0).ToString, RowExpression)&#xD;&#xA;&#x9;&#x9;rowCollection = System.Text.RegularExpressions.Regex.Matches(HeaderCollection(0).ToString, ColumnExpression)&#xD;&#xA;&#x9;&#x9;For Each oHeader As System.Text.RegularExpressions.Match In rowCollection&#xD;&#xA;&#x9;&#x9;&#x9;oDataTable.Columns.Add(System.Text.RegularExpressions.Regex.Replace(oHeader.ToString, &quot;&lt;.*?&gt;&quot;, String.Empty))&#xD;&#xA;&#x9;&#x9;Next&#xD;&#xA;&#x9;&#x9;isHeaderCreated = True&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;Else If Not isHeaderCreated And Not isCustomHeader Then&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;Console.WriteLine(&quot;Adding Fake Headers&quot;)&#xD;&#xA;&#x9;&#x9;HeaderCollection = System.Text.RegularExpressions.Regex.Matches(TblCollection(0).ToString, RowExpression)&#xD;&#xA;&#x9;&#x9;rowCollection = System.Text.RegularExpressions.Regex.Matches(HeaderCollection(0).ToString, ColumnExpression)&#xD;&#xA;&#x9;&#x9;oCol = 1&#xD;&#xA;&#x9;&#x9;For Each oHeader As System.Text.RegularExpressions.Match In rowCollection&#xD;&#xA;&#x9;&#x9;&#x9;oDataTable.Columns.Add(&quot;Column &quot;&amp; oCol)&#xD;&#xA;&#x9;&#x9;&#x9;oCol+=1&#xD;&#xA;&#x9;&#x9;Next&#xD;&#xA;&#x9;&#x9;isHeaderCreated = True&#xD;&#xA;&#x9;End If&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;IHeaderRow = True&#xD;&#xA;&#x9;If System.Text.RegularExpressions.Regex.Matches(HTMLStr, HeaderExpression).Count &gt; 0 OrElse Not isCustomHeader Then&#xD;&#xA;&#x9;&#x9;Console.WriteLine(&quot;Add all as rows&quot;)&#xD;&#xA;&#x9;&#x9;IHeaderRow = False&#xD;&#xA;&#x9;&#x9;iCol = 1&#xD;&#xA;&#x9;End If&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;For Each row As System.Text.RegularExpressions.Match In HeaderCollection&#xD;&#xA;&#x9;&#x9;If Not iCol = 0 And Not IHeaderRow Then&#xD;&#xA;&#x9;&#x9;&#x9;Console.WriteLine(&quot;Checkpt 1&quot;)&#xD;&#xA;&#x9;&#x9;&#x9;console.WriteLine(row.ToString)&#xD;&#xA;&#x9;&#x9;&#x9;rowColValueCollection = System.Text.RegularExpressions.Regex.Matches(row.ToString, ColumnExpression)&#xD;&#xA;&#x9;&#x9;&#x9;dr = oDataTable.NewRow()&#xD;&#xA;&#x9;&#x9;&#x9;iColRow = 0&#xD;&#xA;&#x9;&#x9;&#x9;For Each rowColValue As System.Text.RegularExpressions.Match In rowColValueCollection&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Console.WriteLine(&quot;Checkpt 2&quot;)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;dr(iColRow) = System.Text.RegularExpressions.Regex.Replace(rowColValue.ToString, &quot;&lt;.*?&gt;&quot;, String.Empty)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;iColRow += 1&#xD;&#xA;&#x9;&#x9;&#x9;Next&#xD;&#xA;&#x9;&#x9;&#x9;Console.WriteLine(&quot;Checkpt 3&quot;)&#xD;&#xA;&#x9;&#x9;&#x9;oDataTable.Rows.Add(dr)&#xD;&#xA;&#x9;&#x9;End If&#xD;&#xA;&#x9;&#x9;iCol += 1&#xD;&#xA;&#x9;&#x9;IHeaderRow = False&#xD;&#xA;&#x9;Next&#xD;&#xA;Next &#xD;&#xA;&#xD;&#xA;System.GC.Collect&#xD;&#xA;System.GC.WaitForPendingFinalizers" DisplayName="Invoke Extract HTML Table Version 1" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
+            <ui:InvokeCode.Arguments>
+              <OutArgument x:TypeArguments="sd:DataTable" x:Key="oDataTable">[masterDT]</OutArgument>
+              <InArgument x:TypeArguments="x:Boolean" x:Key="isCustomHeader">[isCustomHeader]</InArgument>
+            </ui:InvokeCode.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokeCode>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,256" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim oApp As New Microsoft.Office.Interop.Outlook.Application&#xA;oApp = New Microsoft.Office.Interop.Outlook.Application&#xA;&#xA;Dim oNS As Microsoft.Office.Interop.Outlook.NameSpace = oApp.GetNamespace(&quot;Mapi&quot;)&#xA;Dim oInbox As Microsoft.Office.Interop.Outlook.MAPIFolder = oNS.Folders(&quot;richmond.goh@ncs.com.sg&quot;).Folders(&quot;RPA Test Folder&quot;).Folders(&quot;Processing&quot;)&#xA;Dim oItems As Microsoft.Office.Interop.Outlook.Items = oInbox.Items&#xA;Dim oMsg As Microsoft.Office.Interop.Outlook._MailItem&#xA;&#xA;oDataTable = New DataTable&#xA;&#xA;Dim TableExpression As String = &quot;&lt;table[^&gt;]*&gt;(.*?)&lt;/table&gt;&quot;&#xA;Dim HeaderExpression As String = &quot;&lt;th[^&gt;]*&gt;(.*?)&lt;/th&gt;&quot;&#xA;Dim RowExpression As String = &quot;&lt;tr[^&gt;]*&gt;(.*?)&lt;/tr&gt;&quot;&#xA;Dim ColumnExpression As String = &quot;&lt;td[^&gt;]*&gt;(.*?)&lt;/td&gt;&quot;&#xA;&#xA;' Headerless&#xA;Dim isHeaderCreated As Boolean&#xA;&#xA;Dim HTMLStr As String&#xA;&#xA;Dim iCol As Integer&#xA;Dim iColRow As Integer&#xA;Dim IHeaderRow As Boolean&#xA;&#xA;Dim TblCollection As System.Text.RegularExpressions.MatchCollection&#xA;Dim HeaderCollection As System.Text.RegularExpressions.MatchCollection&#xA;Dim rowCollection As System.Text.RegularExpressions.MatchCollection&#xA;Dim rowColValueCollection As System.Text.RegularExpressions.MatchCollection&#xA;Dim oCol As Integer&#xA;Dim dr As DataRow&#xA;&#xA;oMsg = DirectCast(oApp.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem),Microsoft.Office.Interop.Outlook._MailItem)&#xA;isHeaderCreated = False&#xA;iCol = 0&#xA;&#xA;For Each oMsg In oItems&#xA;&#x9;HTMLStr = System.Text.RegularExpressions.Regex.Replace(oMsg.HTMLBody, Environment.NewLine, String.Empty)&#xA;&#x9;HTMLStr = System.Text.RegularExpressions.Regex.Replace(HTMLStr, &quot; +&quot;, &quot; &quot;)&#xA;&#x9;TblCollection = System.Text.RegularExpressions.Regex.Matches(HTMLStr,TableExpression)&#xA;&#x9;If TblCollection.Count &lt;&gt; 1 Then&#xA;&#x9;&#x9;Console.WriteLine(&quot;Skipping Email, Contain more than 1 table&quot;)&#xA;&#x9;&#x9;Continue For&#xA;&#x9;End If&#xA;&#xA;&#x9;If System.Text.RegularExpressions.Regex.Matches(TblCollection(0).ToString, HeaderExpression).Count &gt; 0 And Not isHeaderCreated Then&#xA;&#x9;&#x9;' Proceed to add headers&#xA;&#x9;&#x9;Console.WriteLine(&quot;Real Headers Found&quot;)&#xA;&#x9;&#x9;HeaderCollection = System.Text.RegularExpressions.Regex.Matches(TblCollection(0).ToString, RowExpression)&#xA;&#x9;&#x9;Console.WriteLine(HeaderCollection(0).ToString)&#xA;&#x9;&#x9;rowCollection = System.Text.RegularExpressions.Regex.Matches(HeaderCollection(0).ToString, HeaderExpression)&#xA;&#x9;&#x9;For Each oHeader As System.Text.RegularExpressions.Match In rowCollection&#xA;&#xA;&#x9;&#x9;&#x9;oDataTable.Columns.Add(System.Text.RegularExpressions.Regex.Replace(oHeader.ToString, &quot;&lt;.*?&gt;&quot;, String.Empty))&#xA;&#x9;&#x9;Next&#xA;&#x9;&#x9;isHeaderCreated = True&#xA;&#x9;End If&#x9;&#xA;&#x9;&#xA;&#x9;If Not isHeaderCreated And isCustomHeader Then&#xA;&#x9;&#x9;Console.WriteLine(&quot;Adding Custom Headers&quot;)&#xA;&#x9;&#x9;HeaderCollection = System.Text.RegularExpressions.Regex.Matches(TblCollection(0).ToString, RowExpression)&#xA;&#x9;&#x9;rowCollection = System.Text.RegularExpressions.Regex.Matches(HeaderCollection(0).ToString, ColumnExpression)&#xA;&#x9;&#x9;For Each oHeader As System.Text.RegularExpressions.Match In rowCollection&#xA;&#x9;&#x9;&#x9;oDataTable.Columns.Add(System.Text.RegularExpressions.Regex.Replace(oHeader.ToString, &quot;&lt;.*?&gt;&quot;, String.Empty))&#xA;&#x9;&#x9;Next&#xA;&#x9;&#x9;isHeaderCreated = True&#xA;&#x9;&#x9;&#xA;&#x9;Else If Not isHeaderCreated And Not isCustomHeader Then&#xA;&#x9;&#x9;Console.WriteLine(&quot;Adding Fake Headers&quot;)&#xA;&#x9;&#x9;HeaderCollection = System.Text.RegularExpressions.Regex.Matches(TblCollection(0).ToString, RowExpression)&#xA;&#x9;&#x9;rowCollection = System.Text.RegularExpressions.Regex.Matches(HeaderCollection(0).ToString, ColumnExpression)&#xA;&#x9;&#x9;oCol = 1&#xA;&#x9;&#x9;For Each oHeader As System.Text.RegularExpressions.Match In rowCollection&#xA;&#x9;&#x9;&#x9;oDataTable.Columns.Add(&quot;Column &quot;&amp; oCol)&#xA;&#x9;&#x9;&#x9;oCol+=1&#xA;&#x9;&#x9;Next&#xA;&#x9;&#x9;isHeaderCreated = True&#xA;&#x9;End If&#xA;&#x9;&#xA;&#x9;IHeaderRow = True&#xA;&#x9;If System.Text.RegularExpressions.Regex.Matches(HTMLStr, HeaderExpression).Count &gt; 0 OrElse Not isCustomHeader Then&#xA;&#x9;&#x9;Console.WriteLine(&quot;Add all as rows&quot;)&#xA;&#x9;&#x9;IHeaderRow = False&#xA;&#x9;&#x9;iCol = 1&#xA;&#x9;End If&#xA;&#x9;&#xA;&#x9;For Each row As System.Text.RegularExpressions.Match In HeaderCollection&#xA;&#x9;&#x9;rowColValueCollection = System.Text.RegularExpressions.Regex.Matches(row.ToString, ColumnExpression)&#xA;&#x9;&#x9;If Not iCol = 0 And Not IHeaderRow And rowColValueCollection.Count &gt; 0 Then&#xA;&#x9;&#x9;&#x9;Console.WriteLine(&quot;Checkpt 1&quot;)&#xA;&#x9;&#x9;&#x9;dr = oDataTable.NewRow()&#xA;&#x9;&#x9;&#x9;iColRow = 0&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;For Each rowColValue As System.Text.RegularExpressions.Match In rowColValueCollection&#xA;&#x9;&#x9;&#x9;&#x9;Console.WriteLine(&quot;Checkpt 2&quot;)&#xA;&#x9;&#x9;&#x9;&#x9;console.WriteLine(System.Text.RegularExpressions.Regex.Replace(rowColValue.ToString, &quot;&lt;.*?&gt;&quot;, String.Empty))&#xA;&#x9;&#x9;&#x9;&#x9;'console.WriteLine(&quot;Hello&quot; &amp; dr(iColRow).ToString)&#xA;&#x9;&#x9;&#x9;&#x9;dr(iColRow) = System.Text.RegularExpressions.Regex.Replace(rowColValue.ToString, &quot;&lt;.*?&gt;&quot;, String.Empty)&#xA;&#x9;&#x9;&#x9;&#x9;Console.WriteLine(&quot;Save Point&quot;)&#xA;&#x9;&#x9;&#x9;&#x9;iColRow += 1&#xA;&#x9;&#x9;&#x9;Next&#xA;&#x9;&#x9;&#x9;Console.WriteLine(&quot;Checkpt 3&quot;)&#xA;&#x9;&#x9;&#x9;oDataTable.Rows.Add(dr)&#xA;&#x9;&#x9;End If&#xA;&#x9;&#x9;iCol += 1&#xA;&#x9;&#x9;IHeaderRow = False&#xA;&#x9;Next&#xA;Next &#xA;&#xA;System.GC.Collect&#xA;System.GC.WaitForPendingFinalizers" DisplayName="Invoke Extract HTML Table (V2) Version 1" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+            <ui:InvokeCode.Arguments>
+              <OutArgument x:TypeArguments="sd:DataTable" x:Key="oDataTable">[masterDT]</OutArgument>
+              <InArgument x:TypeArguments="x:Boolean" x:Key="isCustomHeader">[isCustomHeader]</InArgument>
+            </ui:InvokeCode.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokeCode>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <If Condition="[masterDT.Rows.Count &gt; 0]" DisplayName="If Got Records to Sort" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="If_3">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <ui:SortDataTable ColumnName="{x:Null}" DataColumn="{x:Null}" ColumnIndex="[0]" DataTable="[masterDT]" DisplayName="Sort Data Table" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="SortDataTable_2" Order="Ascending" OutputDataTable="[masterDT]" />
+      </If.Then>
+    </If>
+    <ui:OutputDataTable DataTable="[masterDT]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[outputTxt]" />
+    <ui:SetToClipboard DisplayName="Set To Clipboard" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="SetToClipboard_1" Text="[outputTxt]" />
+  </Sequence>
+</Activity>

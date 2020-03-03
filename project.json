@@ -1,0 +1,38 @@
+{
+  "name": "Snippets",
+  "description": "Blank Process",
+  "main": "Convert DataTable to HTML.xaml",
+  "dependencies": {
+    "Microsoft.Office.Interop.Excel": "[15.0.4795.1000]",
+    "Microsoft.Office.Interop.Outlook": "15.0.4797.1003",
+    "UiPath.Excel.Activities": "[2.4.6884.25683]",
+    "UiPath.Mail.Activities": "[1.2.6863.29868]",
+    "UiPath.System.Activities": "[18.4.1]",
+    "UiPath.UIAutomation.Activities": "[18.4.2]"
+  },
+  "webServices": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "19.10.1.0",
+  "projectVersion": "1.0.0.0",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "isPausable": true,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow"
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Process",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "fileInfos": []
+  },
+  "expressionLanguage": "VisualBasic"
+}
