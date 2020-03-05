@@ -1,0 +1,41 @@
+<font size="3">
+<p style="font-family:calibri;">
+
+Dear user,<br>
+<br>
+The robot has encountered an exception when running: <b>{0}</b>.<br>
+<br>
+<table style="width:95%; border:1px solid black; border-collapse: collapse; font-family:calibri;">
+    <tr>
+        <td style="width:15%; border:1px solid black;">
+            Exception Error
+        </td>
+        <td style="width:80%; border:1px solid black;">
+            {1}
+        </td>
+    </tr>
+    <tr>
+        <td style="width:15%; border:1px solid black;">
+            Exception Source
+        </td>
+        <td style="width:80%; border:1px solid black;">
+            {2}
+        </td>
+    </tr>
+    <tr>
+        <td style="width:15%; border:1px solid black;">
+            Exception Details
+        </td>
+        <td style="width:80%; border:1px solid black;">
+            {3}
+        </td>
+    </tr>
+</table>
+<br>
+Thank you.<br>
+<br>
+<br>
+
+
+</p>
+</font>

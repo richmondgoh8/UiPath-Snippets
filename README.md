@@ -48,7 +48,7 @@ Important Variables
 
 ## InvokeReplywithOFT
 
-> Replys
+> Reply ontop of a .msg file
 
 Important Variables
 1. in_MsgFilePath (Path to MSG File to serve as the source to reply)
@@ -57,3 +57,77 @@ Important Variables
 4. in_ToList (Additional Recipents)
 5. in_CcList (Additional Recipents in the loop)
 6. in_Subject (Empty, Text if want to overwrite current subject)
+
+## ExcelNumberToLetter
+
+> Convert a datatable index to Alphabet for Writing Range purposes.
+
+Important Variables
+1. colNum (Index f Datatable Column)
+
+## Initialize_Outlook
+
+> Simple Workflow to Open Outlook if closed.
+
+Important Variables
+1. vOutlookPath (Path to Outlook.exe)
+
+* Type "where /r %systemdrive% outlook.exe" (without the double quotes) in cmd to get full path to outlook
+
+## Index_Finder
+
+> Search For a Dynamic Column in a Datatable by using keywords. (Works well when Column Name and Index not fixed)
+
+Important Variables
+1. in_KeywordList (Array of Keywords to used)
+2. In_PureDataTable (Datatable of Column Headers to search for)
+
+* Currently does not accept regex definers such as "()"
+
+## Check_Sharepoint
+
+> Checks whether a successful connection can be made to SharePoint
+
+Important Variables
+1. sharepointPath (Path to any file in SharePoint)
+
+## Copy Directory and Delete All Files
+
+> Copy all files from Source to Destination whilst deleting Source Folder (Optional)
+
+Important Variables
+1. in_SourcePath (Path to Copy File in Folder From)
+2. in_DestinationPath (Path to Copy File to Folder To)
+3. DeleteSourceFolders (Boolean to determine if source folder should be deleted)
+
+* Can be enhanced to only delete sub folders and ignore source folder
+
+## ErrorHandler
+
+> Generic Way to Handle Error (Send Email w Screenshot)
+
+Important Variables
+1. in_ProcessName (Name of Process which threw an error)
+2. in_Exception 
+3. in_Config (Uses Value from Config File to reduce Copy Paste) - Looks for Template & Email Account
+
+* Can be enhanced to cater for your own needs, this is only to serve as a starter template
+
+## Cell Merge
+
+> Merges Cell in a Excel File
+
+Important Variables
+1. in_ExcelPath (Path to Excel File)
+2. in_Sheet (Sheet Name where merging occurs)
+3. in_RangeSeries (Array of Cell Range to merge e.g. {"A1:A2", "B3:C3"} )
+
+## Excel_Borders
+
+> Border Line Styles for All Cells in a Range
+
+1. in_ExcelPath (Path to Excel File)
+2. in_Sheet (Sheet Name where Bordering Style occurs)
+3. in_RangeSeries (Array of Cell Range to have Border Styles e.g. {"A1:A2", "B3:C3"} )
+
+* Can be enhanced to suit your needs (E.g. Border outisde only or Thicker Border w Colors)
