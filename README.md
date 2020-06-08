@@ -8,6 +8,13 @@ Snippet Repository (One-Stop Hack Portal)
 Important Variables
 1. in_dictionaryTableFlag (Determine if key pair value or row X column format)
 
+Custom Variables for Normal Datatable Conversion
+1. fontType (Font Family e.g. Arial)
+2. tableHeaderBgColor
+3. tableHeaderFontColor
+4. colWidth (Width of Each Column)
+5. tableWidth (Set to 100 if you want do not have dyanmic scaling of column)
+
 ```
 When in_dictionaryTableFlag = True, means to ignore the header column and assume the headers are the first column.
 When in_dictionaryTableFlag = False. means to assume that the datatable columns are the html table columns.
@@ -126,8 +133,31 @@ Important Variables
 
 > Border Line Styles for All Cells in a Range
 
+Important Variables
 1. in_ExcelPath (Path to Excel File)
 2. in_Sheet (Sheet Name where Bordering Style occurs)
 3. in_RangeSeries (Array of Cell Range to have Border Styles e.g. {"A1:A2", "B3:C3"} )
 
 * Can be enhanced to suit your needs (E.g. Border outisde only or Thicker Border w Colors)
+
+## CopyWorksheetToWorkbook
+
+> Copies Excel Worksheet from Workbook to Another Workbook (Work with Macro Files)
+
+Important Variables
+1. in_ExcelPath (Path to Excel File)
+2. in_Sheet (Sheet Name to Copy From)
+3. in_Destination (Full Path to New Excel File to be created)
+
+* It will also paste all used cells as values instead of formula/ references.
+
+## ConfigReader
+
+> Read Excel Sheet for Dictionary Values while ensuring no overwriting of values
+
+Important Variables
+1. in_TargetObject (Target Name to retrieve from Windows Credential Manager)
+
+* Can be editted to not use from Credential Manager instead
+
+Prone to Breaking - In-Pro Summary, EXCO Report, In-Pro Report

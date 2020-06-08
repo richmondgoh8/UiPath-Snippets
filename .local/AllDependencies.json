@@ -55,6 +55,18 @@
           "lib/net40/ClosedXML.dll": {}
         }
       },
+      "CredentialManagement/1.0.2": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "CredentialManagement"
+        ],
+        "compile": {
+          "lib/net35/_._": {}
+        },
+        "runtime": {
+          "lib/net35/CredentialManagement.dll": {}
+        }
+      },
       "CsvHelper/2.13.5": {
         "type": "package",
         "compile": {
@@ -163,6 +175,15 @@
           "lib/net20/Microsoft.Office.Interop.Outlook.dll": {}
         }
       },
+      "Microsoft.Office.Interop.Word/15.0.4797.1003": {
+        "type": "package",
+        "compile": {
+          "lib/net20/_._": {}
+        },
+        "runtime": {
+          "lib/net20/Microsoft.Office.Interop.Word.dll": {}
+        }
+      },
       "Microsoft.Rest.ClientRuntime/2.3.10": {
         "type": "package",
         "dependencies": {
@@ -227,6 +248,18 @@
         },
         "build": {
           "build/_._": {}
+        }
+      },
+      "UiPath.Credentials.Activities/1.1.6479.13204": {
+        "type": "package",
+        "dependencies": {
+          "CredentialManagement": "1.0.2"
+        },
+        "compile": {
+          "lib/net40-client/_._": {}
+        },
+        "runtime": {
+          "lib/net40-client/UiPath.Credentials.Activities.dll": {}
         }
       },
       "UiPath.Excel.Activities/2.4.6884.25683": {
@@ -535,6 +568,17 @@
         "lib/net40/ClosedXML.xml"
       ]
     },
+    "CredentialManagement/1.0.2": {
+      "sha512": "VkP04/jFXaxT3TkcRhzETYtOrznQxRmQ2J1XJdbXz47Bir7hIzPR7mFZk4GJQ4An4gozW+vonpf+iqTHomAkQw==",
+      "type": "package",
+      "path": "credentialmanagement/1.0.2",
+      "files": [
+        ".nupkg.metadata",
+        "credentialmanagement.1.0.2.nupkg.sha512",
+        "credentialmanagement.nuspec",
+        "lib/net35/CredentialManagement.dll"
+      ]
+    },
     "CsvHelper/2.13.5": {
       "sha512": "fC8DPi/YTcZ8uXFiAeuT9EpsR2TE5cSJ2jg/4tht/Oen6az/djebpYoCQEtI33RfNrSZ533SedOknlWtUTX3fw==",
       "type": "package",
@@ -655,6 +699,18 @@
         "lib/net20/Microsoft.Office.Interop.Outlook.dll",
         "microsoft.office.interop.outlook.15.0.4797.1003.nupkg.sha512",
         "microsoft.office.interop.outlook.nuspec"
+      ]
+    },
+    "Microsoft.Office.Interop.Word/15.0.4797.1003": {
+      "sha512": "p22pljmHaQjDxNLqO+uO5vi3y0TK5t1mAtSAg93K28/e12Hw3qzfflAo6XHvNXxnvz9HZGv59vLCwIaC9xbXNQ==",
+      "type": "package",
+      "path": "microsoft.office.interop.word/15.0.4797.1003",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net20/Microsoft.Office.Interop.Word.dll",
+        "microsoft.office.interop.word.15.0.4797.1003.nupkg.sha512",
+        "microsoft.office.interop.word.nuspec"
       ]
     },
     "Microsoft.Rest.ClientRuntime/2.3.10": {
@@ -810,6 +866,17 @@
         "lib/UiPath.Interop.dll",
         "uipath.10.0.6913.22031.nupkg.sha512",
         "uipath.nuspec"
+      ]
+    },
+    "UiPath.Credentials.Activities/1.1.6479.13204": {
+      "sha512": "2C7e17Lk1G6QenZQwA5q0DETGdAb9K34p6SqPcAOdHHyr+BtYSWLWhXn+zNlMF8ZCr51pHCiBPNp33nok2B3Qw==",
+      "type": "package",
+      "path": "uipath.credentials.activities/1.1.6479.13204",
+      "files": [
+        ".nupkg.metadata",
+        "lib/net40-client/UiPath.Credentials.Activities.dll",
+        "uipath.credentials.activities.1.1.6479.13204.nupkg.sha512",
+        "uipath.credentials.activities.nuspec"
       ]
     },
     "UiPath.Excel.Activities/2.4.6884.25683": {
@@ -994,6 +1061,8 @@
     ".NETFramework,Version=v4.6.1": [
       "Microsoft.Office.Interop.Excel >= 15.0.4795.1000 <= 15.0.4795.1000",
       "Microsoft.Office.Interop.Outlook >= 15.0.4797.1003 <= 15.0.4797.1003",
+      "Microsoft.Office.Interop.Word >= 15.0.4797.1003 <= 15.0.4797.1003",
+      "UiPath.Credentials.Activities >= 1.1.6479.13204 <= 1.1.6479.13204",
       "UiPath.Excel.Activities >= 2.4.6884.25683 <= 2.4.6884.25683",
       "UiPath.Mail.Activities >= 1.2.6863.29868 <= 1.2.6863.29868",
       "UiPath.System.Activities >= 18.4.1 <= 18.4.1",
@@ -1023,6 +1092,16 @@
             "include": "Runtime",
             "target": "Package",
             "version": "[15.0.4797.1003, 15.0.4797.1003]"
+          },
+          "Microsoft.Office.Interop.Word": {
+            "include": "Runtime",
+            "target": "Package",
+            "version": "[15.0.4797.1003, 15.0.4797.1003]"
+          },
+          "UiPath.Credentials.Activities": {
+            "include": "Runtime",
+            "target": "Package",
+            "version": "[1.1.6479.13204, 1.1.6479.13204]"
           },
           "UiPath.Excel.Activities": {
             "include": "Runtime",

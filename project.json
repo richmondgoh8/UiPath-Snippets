@@ -5,6 +5,8 @@
   "dependencies": {
     "Microsoft.Office.Interop.Excel": "[15.0.4795.1000]",
     "Microsoft.Office.Interop.Outlook": "15.0.4797.1003",
+    "Microsoft.Office.Interop.Word": "[15.0.4797.1003]",
+    "UiPath.Credentials.Activities": "[1.1.6479.13204]",
     "UiPath.Excel.Activities": "[2.4.6884.25683]",
     "UiPath.Mail.Activities": "[1.2.6863.29868]",
     "UiPath.System.Activities": "[18.4.1]",

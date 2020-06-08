@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Test" this:Test.in_ConvertableDT="[new Datatable]" this:Test.in_dictionaryTableFlag="True" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Test" this:Test.in_ConvertableDT="[new Datatable]" this:Test.in_dictionaryTableFlag="False" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_ConvertableDT" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_dictionaryTableFlag" Type="InArgument(x:Boolean)" />
@@ -7,7 +7,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>775,797</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>745,1181</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -60,17 +60,17 @@
       <AssemblyReference>System.Data.Entity</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Boolean Flag to determine if headers should be added in.&#xA;&#xA;2 Version of Conversion has been created. Configure the Send Outlook Mail and change the flag to see sample output of workflow" DisplayName="Custom DT Sequence" sap:VirtualizedContainerService.HintSize="755,737" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Boolean Flag to determine if headers should be added in.&#xA;&#xA;2 Version of Conversion has been created. Configure the Send Outlook Mail and change the flag to see sample output of workflow" DisplayName="Custom DT Sequence" sap:VirtualizedContainerService.HintSize="755,1116" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <If Condition="[in_ConvertableDT is Nothing orelse in_ConvertableDT.Rows.Count = 0]" DisplayName="If Running in Debug Mode" sap:VirtualizedContainerService.HintSize="713,51" sap2010:WorkflowViewState.IdRef="If_2">
+    <If Condition="[in_ConvertableDT is Nothing orelse in_ConvertableDT.Rows.Count = 0]" DisplayName="If Running in Debug Mode" sap:VirtualizedContainerService.HintSize="713,430" sap2010:WorkflowViewState.IdRef="If_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -96,17 +96,42 @@
       <If.Then>
         <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim mySB As System.Text.StringBuilder&#xA;&#xA;mySB = New System.Text.StringBuilder&#xA;mySB.Append(&quot;&lt;table border='1px' cellpadding='5' cellspacing='0' border-collapse: collapse &quot;)&#xA;mySB.Append(&quot;style='border: solid 1px Silver'&gt;&quot;)&#xA;&#xA;If includeHeader Then&#xA;&#x9;mySB.Append(&quot;&lt;tr align='left' valign='top'&gt;&quot;)&#xA;&#x9;For Each myColumn As DataColumn In targetTable.Columns&#xA;&#x9;&#x9;mySB.Append(&quot;&lt;td style='border: solid 1px Black;' align='left' valign='top'&gt;&quot;)&#xA;&#x9;&#x9;mySB.Append(myColumn.ColumnName)&#xA;&#x9;&#x9;mySB.Append(&quot;&lt;/td&gt;&quot;)&#xA;&#x9;Next&#xA;&#x9;mySB.Append(&quot;&lt;/tr&gt;&quot;)&#x9;&#xA;End If&#xA;&#xA;&#xA;For Each myRow As DataRow In targetTable.Rows&#xA;&#x9;mySB.Append(&quot;&lt;tr align='left' valign='top'&gt;&quot;)&#xA;&#x9;&#xA;&#x9;For Each myColumn As DataColumn In targetTable.Columns&#xA;&#x9;&#x9;If targetTable.Columns.IndexOf(myColumn.ColumnName) = 1 Then&#xA;&#x9;&#x9;&#x9;mySB.Append(&quot;&lt;td style='border: solid 1px Black; width:350;' align='left' valign='top'&gt;&quot;)&#xA;&#x9;&#x9;ElseIf targetTable.Columns.IndexOf(myColumn.ColumnName) &gt; 1 Then&#xA;&#x9;&#x9;&#x9;mySB.Append(&quot;&lt;td style='width:100;' align='left' valign='top'&gt;&quot;)&#xA;&#x9;&#x9;Else &#xA;&#x9;&#x9;&#x9;mySB.Append(&quot;&lt;td style='border: solid 1px Black; width:100; background-color:#2E5EAA; color:white;' align='left' valign='top'&gt;&quot;)&#xA;&#x9;&#x9;End If&#xA;&#xA;&#x9;&#x9;mySB.Append(myRow(myColumn.ColumnName).ToString())&#xA;&#x9;&#x9;mySB.Append(&quot;&lt;/td&gt;&quot;)&#xA;&#x9;Next&#xA;&#x9;mySB.Append(&quot;&lt;/tr&gt;&quot;)&#xA;Next&#xA;&#xA;mySB.Append(&quot;&lt;/table&gt;&quot;)&#xA;htmlStr = mySB.ToString&#xA;&#xA;" DisplayName="Invoke Convert DT to Key Value HTML Table" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_4">
           <ui:InvokeCode.Arguments>
-            <InArgument x:TypeArguments="sd:DataTable" x:Key="targetTable">[in_ConvertableDT]</InArgument>
-            <OutArgument x:TypeArguments="x:String" x:Key="htmlStr">[out_HTMLStr]</OutArgument>
-            <InArgument x:TypeArguments="x:Boolean" x:Key="includeHeader">False</InArgument>
+            <InArgument x:TypeArguments="sd:DataTable" x:Key="targetTable">
+              <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="in_ConvertableDT" />
+            </InArgument>
+            <OutArgument x:TypeArguments="x:String" x:Key="htmlStr">
+              <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="out_HTMLStr" />
+            </OutArgument>
+            <InArgument x:TypeArguments="x:Boolean" x:Key="includeHeader">
+              <Literal x:TypeArguments="x:Boolean" />
+            </InArgument>
           </ui:InvokeCode.Arguments>
         </ui:InvokeCode>
       </If.Then>
       <If.Else>
-        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim mySB As System.Text.StringBuilder&#xA;&#xA;mySB = New System.Text.StringBuilder&#xA;mySB.Append(&quot;&lt;table border='1px' cellpadding='5' cellspacing='0' border-collapse: collapse &quot;)&#xA;mySB.Append(&quot;style='border: solid 1px Silver'&gt;&quot;)&#xA;&#xA;mySB.Append(&quot;&lt;tr align='left' valign='top'&gt;&quot;)&#xA;For Each myColumn As DataColumn In targetTable.Columns&#xA;&#x9;mySB.Append(&quot;&lt;td style='border: solid 1px Black; background-color:#2E5EAA; color:white;' align='center' valign='top'&gt;&quot;)&#xA;&#x9;mySB.Append(myColumn.ColumnName)&#xA;&#x9;mySB.Append(&quot;&lt;/td&gt;&quot;)&#xA;Next&#xA;mySB.Append(&quot;&lt;/tr&gt;&quot;)&#x9;&#xA;&#xA;'mySB.Append(&quot;&lt;td style='border: solid 1px Black; width:100; background-color:#2E5EAA; color:white;' align='left' valign='top'&gt;&quot;)&#xA;For Each myRow As DataRow In targetTable.Rows&#xA;&#x9;mySB.Append(&quot;&lt;tr align='left' valign='top'&gt;&quot;)&#xA;&#x9;&#xA;&#x9;For Each myColumn As DataColumn In targetTable.Columns&#xA;&#x9;&#x9;mySB.Append(&quot;&lt;td style='border: solid 1px Black; width:200;' align='left' valign='top'&gt;&quot;)&#xA;&#x9;&#x9;mySB.Append(myRow(myColumn.ColumnName).ToString())&#xA;&#x9;&#x9;mySB.Append(&quot;&lt;/td&gt;&quot;)&#xA;&#x9;Next&#xA;&#x9;mySB.Append(&quot;&lt;/tr&gt;&quot;)&#xA;Next&#xA;&#xA;mySB.Append(&quot;&lt;/table&gt;&quot;)&#xA;htmlStr = mySB.ToString&#xA;&#xA;" DisplayName="Invoke Convert DT to HTML Table" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_5">
+        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim mySB As System.Text.StringBuilder&#xD;&#xA;&#xD;&#xA;mySB = New System.Text.StringBuilder&#xD;&#xA;mySB.AppendFormat(&quot;&lt;table border='1px' cellpadding='5' cellspacing='0' border-collapse: collapse width:{0}% &quot;, tableWidth)&#xD;&#xA;mySB.AppendFormat(&quot;style='border: solid 1px Silver; font-family:{0}'&gt;&quot;, fontType)&#xD;&#xA;&#xD;&#xA;mySB.Append(&quot;&lt;tr align='left' valign='top'&gt;&quot;)&#xD;&#xA;For Each myColumn As DataColumn In targetTable.Columns&#xD;&#xA;&#x9;mySB.AppendFormat(&quot;&lt;td style='border: solid 1px Black; background-color:{0}; color:{1};' align='center' valign='top'&gt;&quot;, tableHeaderBgColor, tableHeaderFontColor)&#xD;&#xA;&#x9;mySB.Append(myColumn.ColumnName)&#xD;&#xA;&#x9;mySB.Append(&quot;&lt;/td&gt;&quot;)&#xD;&#xA;Next&#xD;&#xA;mySB.Append(&quot;&lt;/tr&gt;&quot;)&#x9;&#xD;&#xA;&#xD;&#xA;'mySB.Append(&quot;&lt;td style='border: solid 1px Black; width:100; background-color:#2E5EAA; color:white;' align='left' valign='top'&gt;&quot;)&#xD;&#xA;For Each myRow As DataRow In targetTable.Rows&#xD;&#xA;&#x9;mySB.Append(&quot;&lt;tr align='left' valign='top'&gt;&quot;)&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;For Each myColumn As DataColumn In targetTable.Columns&#xD;&#xA;&#x9;&#x9;mySB.AppendFormat(&quot;&lt;td style='border: solid 1px Black; width:{0};' align='left' valign='top'&gt;&quot;, colWidth)&#xD;&#xA;&#x9;&#x9;mySB.Append(myRow(myColumn.ColumnName).ToString())&#xD;&#xA;&#x9;&#x9;mySB.Append(&quot;&lt;/td&gt;&quot;)&#xD;&#xA;&#x9;Next&#xD;&#xA;&#x9;mySB.Append(&quot;&lt;/tr&gt;&quot;)&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;mySB.Append(&quot;&lt;/table&gt;&quot;)&#xD;&#xA;htmlStr = mySB.ToString&#xD;&#xA;&#xD;&#xA;" DisplayName="Invoke Convert DT to HTML Table" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_5">
           <ui:InvokeCode.Arguments>
-            <InArgument x:TypeArguments="sd:DataTable" x:Key="targetTable">[in_ConvertableDT]</InArgument>
-            <OutArgument x:TypeArguments="x:String" x:Key="htmlStr">[out_HTMLStr]</OutArgument>
+            <InArgument x:TypeArguments="sd:DataTable" x:Key="targetTable">
+              <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="in_ConvertableDT" />
+            </InArgument>
+            <OutArgument x:TypeArguments="x:String" x:Key="htmlStr">
+              <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="out_HTMLStr" />
+            </OutArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="fontType">
+              <Literal x:TypeArguments="x:String">MV Boli</Literal>
+            </InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="tableHeaderBgColor">
+              <Literal x:TypeArguments="x:String">#2E5EAA</Literal>
+            </InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="tableHeaderFontColor">
+              <Literal x:TypeArguments="x:String">white</Literal>
+            </InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="colWidth">
+              <Literal x:TypeArguments="x:String">300</Literal>
+            </InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="tableWidth">
+              <Literal x:TypeArguments="x:String">100</Literal>
+            </InArgument>
           </ui:InvokeCode.Arguments>
         </ui:InvokeCode>
       </If.Else>
