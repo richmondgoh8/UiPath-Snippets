@@ -161,3 +161,8 @@ Important Variables
 * Can be editted to not use from Credential Manager instead
 
 Prone to Breaking - In-Pro Summary, EXCO Report, In-Pro Report
+
+# References
+1. https://download.uipath.com/UiPathStudio.msi
+2. https://download.uipath.com/versions/18.4.6/UiPathPlatformInstaller.exe
+3. https://download.uipath.com/versions/18.4.6/UiPathStudio.msi
